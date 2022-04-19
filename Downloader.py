@@ -21,12 +21,12 @@ if ex == '1':
     if qld == '1':
         stream = youtube.streams.get_highest_resolution()
         stream.download()
-        print('Foi')
+        print('Baixado com sucesso!')
     
     elif qld == '2':
         stream = youtube.streams.get_lowest_resolution()
         stream.download()
-        print('Foi, só que ruim')
+        print('Baixado com sucesso!')
     else:
         print('Opção invalida')
 elif ex == '2':
