@@ -1,8 +1,14 @@
 from pytube import YouTube
+from os import getenv
+
+useerr = getenv("USERNAME")
+
+# https://www.youtube.com/watch?v=lac3TYlarFM
 
 url = str(input('Insira o link do video: '))
 youtube = YouTube(url)
 
+print('')
 print('-'*35)
 print('Titulo: {}'.format(youtube.title))
 print('')
@@ -20,12 +26,14 @@ if ex == '1':
 
     if qld == '1':
         stream = youtube.streams.get_highest_resolution()
-        stream.download()
+        cam = ('C:\\Users\\{}\\Downloads'.format(useerr))
+        stream.download(cam)
         print('Baixado com sucesso!')
     
     elif qld == '2':
         stream = youtube.streams.get_lowest_resolution()
-        stream.download()
+        cam = ('C:\\Users\\{}\\Downloads'.format(useerr))
+        stream.download(cam)
         print('Baixado com sucesso!')
     else:
         print('Opção invalida')
