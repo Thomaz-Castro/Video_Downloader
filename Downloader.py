@@ -4,8 +4,6 @@ import moviepy.editor as mp
 
 useerr = getenv("USERNAME")
 
-# https://www.youtube.com/watch?v=lac3TYlarFM
-
 url = str(input('Insira o link do video: '))
 youtube = YouTube(url)
 
