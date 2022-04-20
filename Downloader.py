@@ -17,7 +17,9 @@ print('')
 ex = input('Selecione um formato: \n'
 '[ 1 ] - mp4 (video normal)\n'
 '[ 2 ] - mp3 (apenas audio)\n'
+'obs - ler README\n'
 'Selecione: ')
+
 
 print('')
 print('-'*35)
