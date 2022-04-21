@@ -1,6 +1,7 @@
 from pytube import YouTube
-from os import getenv, remove
+from os import getenv, remove, listdir
 import moviepy.editor as mp
+from os.path import isfile, join
 
 useerr = getenv("USERNAME")
 
@@ -46,12 +47,20 @@ if ex == '1':
         print('Opção invalida')
 elif ex == '2':
     stream = youtube.streams.get_audio_only()
-    cam = str('C:\\Users\\{}\\Downloads'.format(useerr))
+    cam = ('mp')
+    ddpast = str('C:\\Users\\{}\\Downloads'.format(useerr))
     stream.download(cam)
-    cc = [cam,'\\' , vdtt,'.mp4']
+
+    path = 'mp'
+    files = [f for f in listdir(path) if isfile(join(path, f))]
+    nomearq = str(files[0])
+
+
+    cc = [cam,'\\' , nomearq]
     cc = ''.join(cc)
     clip = mp.AudioFileClip(cc)
-    ccdd = [cam,'\\' , vdtt, '\\' ,  '.mp3']
+    nomearq3 = nomearq.replace('.mp4', '.mp3')
+    ccdd = [ddpast,'\\' , nomearq3]
     ccdd = ''.join(ccdd)
     clip.write_audiofile(ccdd)
     remove(cc)

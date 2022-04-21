@@ -8,6 +8,4 @@ https://stackoverflow.com/a/71903013
 
 ------------------------------------------
 
-Nota: a biblioteca do moviepy, não sei por qual razão nao converte alguns videos. Em certos casos o video é baixado normalmente porem não é convertido e gera um erro, e fica apenas o video em mp4.
-Porem se pegar a mesma musica porem em outro video da certo,
-estou tentando resolver.
+Nota: O programa falhava na hora de converter o mp4 para mp3, porem consegui arrumar usando algumas manipulções de string, e a biblioteca OS, nos meus testes o programa funcionou em 100% dos casos.
