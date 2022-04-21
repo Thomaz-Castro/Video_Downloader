@@ -5,6 +5,8 @@ from os.path import isfile, join
 
 useerr = getenv("USERNAME")
 
+print(('\033[1;31m'), ('-='*15),'YOUTUBE DOWNLOADER', ('=-'*15), ('\033[m'))
+
 url = str(input('Insira o link do video: '))
 youtube = YouTube(url)
 
@@ -18,7 +20,6 @@ print('')
 ex = input('Selecione um formato: \n'
 '[ 1 ] - mp4 (video normal)\n'
 '[ 2 ] - mp3 (apenas audio)\n'
-'obs - ler README\n'
 'Selecione: ')
 
 
@@ -36,13 +37,17 @@ if ex == '1':
         stream = youtube.streams.get_highest_resolution()
         cam = ('C:\\Users\\{}\\Downloads'.format(useerr))
         stream.download(cam)
-        print('Baixado com sucesso!')
+        print('')
+        print('-'*35)
+        print('\033[1;32mBaixado com sucesso!')
     
     elif qld == '2':
         stream = youtube.streams.get_lowest_resolution()
         cam = ('C:\\Users\\{}\\Downloads'.format(useerr))
         stream.download(cam)
-        print('Baixado com sucesso!')
+        print('')
+        print('-'*35)
+        print('\033[1;32mBaixado com sucesso!')
     else:
         print('Opção invalida')
 elif ex == '2':
@@ -65,7 +70,8 @@ elif ex == '2':
     ccdd = ''.join(ccdd)
     clip.write_audiofile(ccdd)
     remove(cc)
-    print('Baixado com sucesso!')
+    print('')
+    print('\033[1;32mBaixado com sucesso!')
 
 else:
     print('Opção invalida')
