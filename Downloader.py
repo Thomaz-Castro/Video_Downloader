@@ -52,8 +52,9 @@ elif ex == '2':
     stream.download(cam)
 
     path = 'mp'
-    files = [f for f in listdir(path) if isfile(join(path, f))]
-    nomearq = str(files[0])
+    files = list([f for f in listdir(path) if isfile(join(path, f))])
+    files = sorted(files)
+    nomearq = str(files[1])
 
 
     cc = [cam,'\\' , nomearq]
