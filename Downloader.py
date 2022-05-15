@@ -1,6 +1,5 @@
 from emoji import emojize
 from PySimpleGUI import PySimpleGUI as sg
-import emoji
 from pytube import YouTube
 from os import getenv, remove, listdir
 import moviepy.editor as mp
