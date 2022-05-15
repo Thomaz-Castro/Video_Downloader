@@ -1,77 +1,78 @@
+from emoji import emojize
+from PySimpleGUI import PySimpleGUI as sg
+import emoji
 from pytube import YouTube
 from os import getenv, remove, listdir
 import moviepy.editor as mp
 from os.path import isfile, join
 
+tit = ('YOUTUBE DOWNLOADER')
+dmsg = ('Baixado com sucesso!')
+ll = emojize(str(':magnifying_glass_tilted_left:'))
+
+#layout
+sg.theme('DarkBlue17')
+layout_column = [
+    [sg.Text('YOUTUBE DOWNLOADER', justification='center')],
+    [sg.Text('Insira o link'),sg.Input(key='url'), sg.Button(ll)],
+    [sg.Text('  -- título do vídeo --  ', key='tiltulu', background_color='#655A80')],
+    [sg.Text('Download:')],
+    [sg.Button('MP3', size=(10,3)), sg.Button('MP4 - MAX', size=(10,3)), sg.Button('MP4 - MIN', size=(10,3))],
+    [sg.Text('', key='douloadi')]
+]
+layout = [[sg.Column(layout_column, element_justification='center')]]
+
 useerr = getenv("USERNAME")
 
-print(('\033[1;31m'), ('-='*15),'YOUTUBE DOWNLOADER', ('=-'*15), ('\033[m'))
 
-url = str(input('Insira o link do video: '))
-youtube = YouTube(url)
+#janela
+janela = sg.Window('Video Downloader', layout)
 
-vdtt = youtube.title
+#eventos
 
-print('')
-print('-'*35)
-print('Titulo: {}'.format(youtube.title))
-print('')
+while True:
+    eventos, valores = janela.read()
+    if eventos == sg.WINDOW_CLOSED:
+        break
 
-ex = input('Selecione um formato: \n'
-'[ 1 ] - mp4 (video normal)\n'
-'[ 2 ] - mp3 (apenas audio)\n'
-'Selecione: ')
+    youtube = YouTube((valores['url']))
+    if eventos == ll:
+        vdtt = youtube.title
+        vdttd = ['TÍTULO:  ', vdtt]
+        vdttd = ''.join(vdttd)
+
+        janela['tiltulu'].update(vdttd)
+
+    if eventos == 'MP3':
+        stream = youtube.streams.get_audio_only()
+        cam = ('mp')
+        ddpast = str('C:\\Users\\{}\\Downloads'.format(useerr))
+        stream.download(cam)
+
+        path = 'mp'
+        files = list([f for f in listdir(path) if isfile(join(path, f))])
+        files = sorted(files)
+        nomearq = str(files[1])
 
 
-print('')
-print('-'*35)
-print('')
+        cc = [cam,'\\' , nomearq]
+        cc = ''.join(cc)
+        clip = mp.AudioFileClip(cc)
+        nomearq3 = nomearq.replace('.mp4', '.mp3')
+        ccdd = [ddpast,'\\' , nomearq3]
+        ccdd = ''.join(ccdd)
+        clip.write_audiofile(ccdd)
+        remove(cc)
+        janela['douloadi'].update(dmsg)
 
-if ex == '1':
-    qld = input('escolha a qualidade: \n'
-    '[ 1 ] - Qualidade Maxima\n'
-    '[ 2 ] - Qualidade Minima\n'
-    'Selecione: ')
-
-    if qld == '1':
+    elif eventos == 'MP4 - MAX':
         stream = youtube.streams.get_highest_resolution()
         cam = ('C:\\Users\\{}\\Downloads'.format(useerr))
         stream.download(cam)
-        print('')
-        print('-'*35)
-        print('\033[1;32mBaixado com sucesso!')
-    
-    elif qld == '2':
+        janela['douloadi'].update(dmsg)
+    elif eventos == 'MP4 - MIN':
         stream = youtube.streams.get_lowest_resolution()
         cam = ('C:\\Users\\{}\\Downloads'.format(useerr))
         stream.download(cam)
-        print('')
-        print('-'*35)
-        print('\033[1;32mBaixado com sucesso!')
-    else:
-        print('Opção invalida')
-elif ex == '2':
-    stream = youtube.streams.get_audio_only()
-    cam = ('mp')
-    ddpast = str('C:\\Users\\{}\\Downloads'.format(useerr))
-    stream.download(cam)
-
-    path = 'mp'
-    files = list([f for f in listdir(path) if isfile(join(path, f))])
-    files = sorted(files)
-    nomearq = str(files[1])
-
-
-    cc = [cam,'\\' , nomearq]
-    cc = ''.join(cc)
-    clip = mp.AudioFileClip(cc)
-    nomearq3 = nomearq.replace('.mp4', '.mp3')
-    ccdd = [ddpast,'\\' , nomearq3]
-    ccdd = ''.join(ccdd)
-    clip.write_audiofile(ccdd)
-    remove(cc)
-    print('')
-    print('\033[1;32mBaixado com sucesso!')
-
-else:
-    print('Opção invalida')
+        janela['douloadi'].update(dmsg)
+    
