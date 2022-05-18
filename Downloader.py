@@ -1,13 +1,14 @@
+from os import getenv, listdir, remove
+from os.path import isfile, join
+import moviepy.editor as mp
 from emoji import emojize
 from PySimpleGUI import PySimpleGUI as sg
 from pytube import YouTube
-from os import getenv, remove, listdir
-import moviepy.editor as mp
-from os.path import isfile, join
 
 tit = ('YOUTUBE DOWNLOADER')
 dmsg = ('Baixado com sucesso!')
 ll = emojize(str(':magnifying_glass_tilted_left:'))
+
 
 #layout
 sg.theme('DarkBlue17')
@@ -33,8 +34,10 @@ while True:
     eventos, valores = janela.read()
     if eventos == sg.WINDOW_CLOSED:
         break
-
+    
     youtube = YouTube((valores['url']))
+    
+    vdtt = youtube.title
     if eventos == ll:
         vdtt = youtube.title
         vdttd = ['TÍTULO:  ', vdtt]
