@@ -1,7 +1,0 @@
-NAO APAGUE ESTE ARQUIVIO OU ESSA PASTA!!!!
-
-esse aquivo serve para subir a pasta 'mp' pro github, ja que o git não aceita diretorios vazios
-
-e a pasta é como um redirecionador para o download do video então...
-
-NAO APAGUE ESTE ARQUIVIO OU ESSA PASTA!!!!

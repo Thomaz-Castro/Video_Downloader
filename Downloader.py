@@ -31,6 +31,7 @@ janela = sg.Window('Video Downloader', layout)
 
 #eventos
 
+jjj = 0
 
 while True:
     eventos, valores = janela.read()
@@ -40,14 +41,10 @@ while True:
 
     if valores['playlist'] == False:
 
-        def percent(self, tem, total):
-            perc = (float(tem) / float(total)) * float(100)
-            return perc
-
         youtube = YouTube((valores['url']))
         
         vdtt = youtube.title
-        
+
         if eventos == ll:
             vdtt = youtube.title
             vdttd = ['TÍTULO:  ', vdtt]
@@ -61,6 +58,9 @@ while True:
             ddpast = str('C:\\Users\\{}\\Downloads'.format(useerr))
             stream.download(cam)
 
+            janela['douloadi'].update('50% - Convertendo...')
+            janela['barrr'].update(50)
+            
             path = 'mp'
             files = list([f for f in listdir(path) if isfile(join(path, f))])
             files = sorted(files)
@@ -74,20 +74,53 @@ while True:
             ccdd = [ddpast,'\\' , nomearq3]
             ccdd = ''.join(ccdd)
             clip.write_audiofile(ccdd)
+            for i in range(100):
+                if i == 0:
+                    i += 50
+                eventos, valores =janela.read(20)
+                janela['barrr'].update(i+20)
             remove(cc)
             janela['douloadi'].update(dmsg)
+
+            for i in range(125):
+                eventos, valores =janela.read(100)
+            janela['douloadi'].update('')
+            janela['tiltulu'].update('===================================')
+            janela['barrr'].update(0)
             
 
         elif eventos == 'MP4 - MAX':
+            janela['douloadi'].update('')
+            janela['barrr'].update(0)
             stream = youtube.streams.get_highest_resolution()
             cam = ('C:\\Users\\{}\\Downloads'.format(useerr))
+            for i in range(100):
+                eventos, valores =janela.read(20)
+                janela['barrr'].update(i+20)
             stream.download(cam)
+
             janela['douloadi'].update(dmsg)
+            for i in range(125):
+                eventos, valores =janela.read(100)
+            janela['douloadi'].update('')
+            janela['tiltulu'].update('===================================')
+            janela['barrr'].update(0)
+
         elif eventos == 'MP4 - MIN':
+            janela['douloadi'].update('')
+            janela['barrr'].update(0)
             stream = youtube.streams.get_lowest_resolution()
             cam = ('C:\\Users\\{}\\Downloads'.format(useerr))
+            for i in range(100):
+                eventos, valores =janela.read(20)
+                janela['barrr'].update(i+20)
             stream.download(cam)
             janela['douloadi'].update(dmsg)
+            for i in range(125):
+                eventos, valores =janela.read(100)
+            janela['douloadi'].update('')
+            janela['tiltulu'].update('===================================')
+            janela['barrr'].update(0)
 
             
     else:
@@ -97,7 +130,16 @@ while True:
         progresso = bartot
         blockcc = 0
         percenti = 0
-        
+
+        vdtt = playmus.title
+
+        if eventos == ll:
+            vdtt = playmus.title
+            vdttd = ['TÍTULO:  ', vdtt]
+            vdttd = ''.join(vdttd)
+
+            janela['tiltulu'].update(vdttd)
+
         if eventos == 'MP3':
             for urlss in playmus.video_urls:
                 linkurl = str(urlss)
